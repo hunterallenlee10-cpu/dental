@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { ViewTransition } from "react";
+import { Suspense, ViewTransition } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/layout/SiteNav";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -16,8 +16,9 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
   weight: "variable",
-  axes: ["opsz"],
   display: "swap",
+  // Not preloaded: the hero photo is the LCP element, and the serif swaps in a moment later.
+  preload: false,
 });
 
 const geist = Geist({
@@ -58,16 +59,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <SiteNav />
-        <ViewTransition>
+        {/* Crossfade on route changes only. default="none" keeps Suspense reveals and refreshes still. */}
+        <ViewTransition default="none" update={{ page: "page-fade", default: "none" }}>
           <main id="main" tabIndex={-1} className="flex-1 outline-none">
             {children}
           </main>
         </ViewTransition>
-        <SiteFooter />
+        <Suspense>
+          <SiteFooter />
+        </Suspense>
         <MobileBar />
         <BackToTop />
         <VisitRequestRoot />
-        <Analytics />
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

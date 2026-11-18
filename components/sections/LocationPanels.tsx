@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { ArrowUpRight, Phone } from "lucide-react";
 import { addressPlaceholder, business, mapsSearchUrl, offices } from "@/lib/business";
 import { routes } from "@/lib/routes";
@@ -61,6 +61,7 @@ export function LocationPanels() {
               id={`loc-tab-${o.slug}`}
               aria-selected={on}
               aria-controls={`loc-panel-${o.slug}`}
+              aria-label={o.isNew ? `${o.town}, new office` : o.town}
               tabIndex={on ? 0 : -1}
               onClick={() => setActive(i)}
               onKeyDown={(e) => onKey(e, i)}

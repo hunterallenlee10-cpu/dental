@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { AlertTriangle, Phone } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { BookButton } from "@/components/ui/BookButton";

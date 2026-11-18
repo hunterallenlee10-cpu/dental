@@ -1,5 +1,6 @@
 import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
 import { PageHero } from "./PageHero";
+import { Deferred } from "@/components/ui/Deferred";
 import { ServiceCard } from "./Cards";
 import { FaqSection } from "@/components/sections/home/FaqSection";
 import { MapFacade } from "@/components/sections/MapFacade";
@@ -45,26 +46,17 @@ export function LocationTemplate({ o }: { o: Office }) {
             <h2 id="office-title" className="font-display text-[2.25rem] leading-tight">The {o.town} office</h2>
             <DraftTag className="mt-3">Photo: your {o.town} office</DraftTag>
             <dl className="mt-8 space-y-6">
-              <div className="flex gap-4">
-                <MapPin size={20} strokeWidth={1.5} className="mt-1 shrink-0 text-cyan" aria-hidden="true" />
-                <div>
-                  <dt className="label text-mist">Address</dt>
-                  <dd className="mt-1">{addressPlaceholder}<br /><span className="text-mist">{o.isNew ? `${o.town}, MD` : `${o.landmark}, ${o.town}, MD`}</span></dd>
-                </div>
+              <div>
+                <dt className="label flex items-center gap-3 text-mist"><MapPin size={18} strokeWidth={1.5} className="text-cyan" aria-hidden="true" /> Address</dt>
+                <dd className="mt-1 pl-[30px]">{addressPlaceholder}<br /><span className="text-mist">{o.isNew ? `${o.town}, MD` : `${o.landmark}, ${o.town}, MD`}</span></dd>
               </div>
-              <div className="flex gap-4">
-                <Clock size={20} strokeWidth={1.5} className="mt-1 shrink-0 text-cyan" aria-hidden="true" />
-                <div>
-                  <dt className="label text-mist">Hours</dt>
-                  <dd className="mt-1">{business.hoursLong}</dd>
-                </div>
+              <div>
+                <dt className="label flex items-center gap-3 text-mist"><Clock size={18} strokeWidth={1.5} className="text-cyan" aria-hidden="true" /> Hours</dt>
+                <dd className="mt-1 pl-[30px]">{business.hoursLong}</dd>
               </div>
-              <div className="flex gap-4">
-                <Phone size={20} strokeWidth={1.5} className="mt-1 shrink-0 text-cyan" aria-hidden="true" />
-                <div>
-                  <dt className="label text-mist">Phone</dt>
-                  <dd className="mt-1"><a href={business.phoneHref} className="underline-offset-4 hover:underline">{business.phoneDisplay}</a> <span className="text-mist">(one number for all offices)</span></dd>
-                </div>
+              <div>
+                <dt className="label flex items-center gap-3 text-mist"><Phone size={18} strokeWidth={1.5} className="text-cyan" aria-hidden="true" /> Phone</dt>
+                <dd className="mt-1 pl-[30px]"><a href={business.phoneHref} className="underline-offset-4 hover:underline">{business.phoneDisplay}</a> <span className="text-mist">(one number for all offices)</span></dd>
               </div>
             </dl>
             <a href={mapsSearchUrl(o.town)} target="_blank" rel="noopener noreferrer" className="btn btn-paper mt-10">
@@ -101,12 +93,14 @@ export function LocationTemplate({ o }: { o: Office }) {
         </div>
       </section>
 
+      <Deferred>
       <TeamRail
         headingId="who-title"
         title={<>Who works <em className="accent">here</em></>}
         sub="We tell you when you book. Our dentists and hygienists work as one team across the four offices."
       />
-      <FaqSection items={l.faq} title={<>{o.town} <em className="accent">questions</em></>} />
+      </Deferred>
+      <Deferred><FaqSection items={l.faq} title={<>{o.town} <em className="accent">questions</em></>} /></Deferred>
       <CtaPanel office={o.slug} />
     </>
   );

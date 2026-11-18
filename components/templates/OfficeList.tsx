@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { ArrowUpRight } from "lucide-react";
 import { Sparkle } from "@/components/brand/Sparkle";
 import { addressPlaceholder, business, mapsSearchUrl, offices } from "@/lib/business";

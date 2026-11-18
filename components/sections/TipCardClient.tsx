@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { routes } from "@/lib/routes";
 import type { Tip } from "@/content/types";
 

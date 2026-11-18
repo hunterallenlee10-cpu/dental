@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Photo } from "@/components/ui/Photo";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { routes } from "@/lib/routes";

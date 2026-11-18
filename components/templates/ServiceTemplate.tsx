@@ -1,5 +1,6 @@
 import { Check, Info } from "lucide-react";
 import { PageHero } from "./PageHero";
+import { Deferred } from "@/components/ui/Deferred";
 import { StepsBand } from "./StepsBand";
 import { PriceBlock } from "./PriceBlock";
 import { RelatedTips, ServiceCard } from "./Cards";
@@ -86,7 +87,7 @@ export function ServiceTemplate({ s, description }: { s: Service; description: s
         </div>
       </section>
 
-      <StepsBand id="how-title" title={<>How treatment <em className="accent">works</em></>} steps={s.steps} />
+      <Deferred><StepsBand id="how-title" title={<>How treatment <em className="accent">works</em></>} steps={s.steps} /></Deferred>
 
       {s.after.length || s.gains.length ? (
         <section aria-labelledby={s.after.length ? "after-title" : "gain-title"} className="section">
@@ -129,11 +130,11 @@ export function ServiceTemplate({ s, description }: { s: Service; description: s
         </section>
       ) : null}
 
-      {s.slug === "porcelain-veneers" ? <VeneersFeature /> : null}
+      <Deferred>{s.slug === "porcelain-veneers" ? <VeneersFeature /> : null}</Deferred>
 
-      <PriceBlock name={s.name} need={meta.need} />
+      <Deferred><PriceBlock name={s.name} need={meta.need} /></Deferred>
 
-      {s.faq.length ? <FaqSection items={s.faq} title={<>Questions about <em className="accent">{nameForWhere}</em></>} /> : null}
+      {s.faq.length ? <Deferred><FaqSection items={s.faq} title={<>Questions about <em className="accent">{nameForWhere}</em></>} /></Deferred> : null}
 
       {s.related.length ? (
         <section aria-labelledby="related-title" className="section bg-porcelain">
@@ -150,8 +151,8 @@ export function ServiceTemplate({ s, description }: { s: Service; description: s
         </section>
       ) : null}
 
-      <RelatedTips slugs={s.relatedTips} />
-      <ReviewsPlaceholder tone="porcelain" />
+      <Deferred><RelatedTips slugs={s.relatedTips} /></Deferred>
+      <Deferred><ReviewsPlaceholder tone="porcelain" /></Deferred>
       <div className="pt-20 md:pt-32">
         <CtaPanel reason={reason} />
       </div>

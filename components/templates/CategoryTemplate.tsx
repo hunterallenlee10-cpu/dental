@@ -1,4 +1,5 @@
 import { PageHero } from "./PageHero";
+import { Deferred } from "@/components/ui/Deferred";
 import { StepsBand } from "./StepsBand";
 import { RelatedTips, ServiceCard } from "./Cards";
 import { FaqSection } from "@/components/sections/home/FaqSection";
@@ -72,10 +73,10 @@ export function CategoryTemplate({ c }: { c: Category }) {
           ))}
         </div>
       </section>
-      <StepsBand id="how-title" title={<>How it <em className="accent">works</em></>} steps={extras.howItWorks} />
-      <FaqSection items={extras.faq} />
-      <RelatedTips slugs={tipSlugs} />
-      <ReviewsPlaceholder />
+      <Deferred><StepsBand id="how-title" title={<>How it <em className="accent">works</em></>} steps={extras.howItWorks} /></Deferred>
+      <Deferred><FaqSection items={extras.faq} /></Deferred>
+      <Deferred><RelatedTips slugs={tipSlugs} /></Deferred>
+      <Deferred><ReviewsPlaceholder /></Deferred>
       <div className="pt-20 md:pt-32">
         <CtaPanel reason={categoryReason[c.key]} />
       </div>

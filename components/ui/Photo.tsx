@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   /** Cover its box: renders with intrinsic width and height attributes, sized by CSS. */
   cover?: boolean;
+  /** The page's LCP image: fetched eagerly at high priority (the Next 16 docs' recommended setting over `preload`). */
   preload?: boolean;
   alt?: string;
   style?: React.CSSProperties;
@@ -24,7 +25,8 @@ export function Photo({ id, sizes, className = "", cover, preload, alt, style, q
       height={p.height}
       sizes={sizes}
       quality={quality}
-      preload={preload}
+      loading={preload ? "eager" : undefined}
+      fetchPriority={preload ? "high" : undefined}
       style={style}
       className={cover ? `h-full w-full object-cover ${className}` : className}
     />

@@ -7,7 +7,7 @@ import { DraftTag } from "@/components/ui/DraftTag";
 import { business, differentiators, payment } from "@/lib/business";
 import { pageMeta } from "@/lib/seo";
 import { routes } from "@/lib/routes";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 
 export const metadata = pageMeta({
   title: "New Patients | Dentist in Baltimore and Frederick, MD | Aurelle",

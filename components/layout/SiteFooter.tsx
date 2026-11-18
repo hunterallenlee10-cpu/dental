@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Sparkle } from "@/components/brand/Sparkle";
 import { BookButton } from "@/components/ui/BookButton";

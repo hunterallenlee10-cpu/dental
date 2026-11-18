@@ -15,6 +15,8 @@ import { homeFaq } from "@/content/home";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { practiceSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
+import { Deferred } from "@/components/ui/Deferred";
+import { Suspense } from "react";
 
 export const metadata = pageMeta({
   title: "Dentist in Baltimore and Frederick, MD | Aurelle Dental",
@@ -27,18 +29,18 @@ export default function HomePage() {
     <>
       <JsonLd data={practiceSchema()} />
       <Hero />
-      <ProofStrip />
-      <MissionBand />
-      <ServiceTiles />
-      <CoverageSection />
-      <WhyAurelle />
-      <BeforeAfterRail />
-      <TeamRail />
-      <PaymentSection />
-      <LocationsSection />
-      <ReviewsPlaceholder />
-      <FaqSection items={homeFaq} />
-      <CtaPanel />
+      <Suspense><ProofStrip /></Suspense>
+      <Deferred><MissionBand /></Deferred>
+      <Deferred><ServiceTiles /></Deferred>
+      <Deferred><CoverageSection /></Deferred>
+      <Deferred><WhyAurelle /></Deferred>
+      <Deferred><BeforeAfterRail /></Deferred>
+      <Deferred><TeamRail /></Deferred>
+      <Deferred><PaymentSection /></Deferred>
+      <Deferred><LocationsSection /></Deferred>
+      <Deferred><ReviewsPlaceholder /></Deferred>
+      <Deferred><FaqSection items={homeFaq} /></Deferred>
+      <Deferred><CtaPanel /></Deferred>
     </>
   );
 }

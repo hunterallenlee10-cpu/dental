@@ -327,6 +327,18 @@
 ::view-transition-new(root) {
   animation-duration: 0.28s;
 }
+::view-transition-old(.page-fade) {
+  animation: 180ms ease-in both vt-fade-out;
+}
+::view-transition-new(.page-fade) {
+  animation: 260ms ease-out 80ms both vt-fade-in;
+}
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),
@@ -389,4 +401,10 @@ html[data-fl="done"] .fl-love {
 html[data-visit="open"] .mobile-bar,
 html[data-sheet="open"] .mobile-bar {
   display: none;
+}
+
+/* Below-the-fold sections skip style, layout and paint until they near the viewport. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }

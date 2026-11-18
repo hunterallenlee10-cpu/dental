@@ -53,7 +53,7 @@ export default function ContactPage() {
             <li>
               <BookButton className={`${tileBase} border-azure-deep bg-azure-deep text-paper hover:border-navy hover:bg-navy`}>
                 <CalendarCheck size={24} strokeWidth={1.5} aria-hidden="true" />
-                <span><span className="label block text-paper/80">Online</span><span className="mt-1 block font-display text-[1.75rem]">Book a visit</span></span>
+                <span><span className="label block text-paper">Online</span><span className="mt-1 block font-display text-[1.75rem]">Book a visit</span></span>
               </BookButton>
             </li>
           </ul>

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react";
@@ -174,10 +174,10 @@ export function SiteNav() {
           </div>
         </div>
 
-        {/* Services mega menu */}
+        {/* Services mega menu (rendered only when open; the footer carries the same links for crawlers) */}
+        {panel === "services" ? (
         <div
           id="mega-services"
-          hidden={panel !== "services"}
           className="absolute inset-x-0 top-full border-b border-line bg-paper text-ink shadow-float"
         >
           <div className="wrap grid grid-cols-6 gap-8 py-10">
@@ -209,11 +209,12 @@ export function SiteNav() {
             </div>
           </div>
         </div>
+        ) : null}
 
         {/* Locations panel */}
+        {panel === "locations" ? (
         <div
           id="mega-locations"
-          hidden={panel !== "locations"}
           className="absolute inset-x-0 top-full border-b border-line bg-paper text-ink shadow-float"
         >
           <div className="wrap grid grid-cols-5 gap-8 py-10">
@@ -231,16 +232,17 @@ export function SiteNav() {
             </div>
           </div>
         </div>
+        ) : null}
       </header>
 
-      {/* Mobile sheet */}
+      {/* Mobile sheet (rendered only when open) */}
+      {sheet ? (
       <div
         id="mobile-sheet"
         ref={sheetRef}
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        hidden={!sheet}
         className="on-ink fixed inset-0 z-50 overflow-y-auto bg-ink text-paper"
       >
         <div className="wrap flex h-[72px] items-center justify-between">
@@ -282,6 +284,7 @@ export function SiteNav() {
           </p>
         </nav>
       </div>
+      ) : null}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { pricingTable } from "@/lib/pricing";
 import { serviceBySlug } from "@/content/services";
 import { routes } from "@/lib/routes";

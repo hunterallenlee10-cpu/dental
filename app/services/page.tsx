@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/templates/PageHero";
 import { ServiceCard } from "@/components/templates/Cards";

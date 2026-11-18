@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { ArrowRight } from "lucide-react";
 import { Rail } from "@/components/ui/Rail";
 import { PlaceholderPortrait } from "./PlaceholderPortrait";
