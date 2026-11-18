@@ -234,6 +234,23 @@
     scrollbar-width: none;
     padding-bottom: 4px;
   }
+  /* Rail edge padding lines the first card up with the .wrap container. */
+  .rail-pad {
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .rail-pad {
+      padding-inline: 40px;
+      scroll-padding-inline: 40px;
+    }
+  }
+  @media (min-width: 1320px) {
+    .rail-pad {
+      padding-inline: calc(50vw - 620px);
+      scroll-padding-inline: calc(50vw - 620px);
+    }
+  }
   .rail::-webkit-scrollbar {
     display: none;
   }

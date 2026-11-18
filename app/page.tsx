@@ -4,6 +4,9 @@ import { MissionBand } from "@/components/sections/home/MissionBand";
 import { ServiceTiles } from "@/components/sections/home/ServiceTiles";
 import { CoverageSection } from "@/components/sections/home/CoverageSection";
 import { WhyAurelle } from "@/components/sections/home/WhyAurelle";
+import { BeforeAfterRail } from "@/components/sections/BeforeAfterRail";
+import { TeamRail } from "@/components/team/TeamRail";
+import { PaymentSection } from "@/components/sections/home/PaymentSection";
 
 export default function HomePage() {
   return (
@@ -14,6 +17,9 @@ export default function HomePage() {
       <ServiceTiles />
       <CoverageSection />
       <WhyAurelle />
+      <BeforeAfterRail />
+      <TeamRail />
+      <PaymentSection />
     </>
   );
 }
