@@ -39,7 +39,7 @@ const formatPhone = (s: string) => {
   return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
 };
 
-export default function VisitRequestModal({ initial, onClose }: { initial: BookDetail; onClose: () => void }) {
+export default function VisitRequestModal({ initial, onClose, inline }: { initial: BookDetail; onClose?: () => void; inline?: boolean }) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -58,17 +58,24 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
   // The modal only ever renders in the browser (lazy loaded on first open), so window is available.
   const [isPhone] = useState(() => window.matchMedia("(pointer: coarse) and (max-width: 820px)").matches);
 
-  // Focus management: move focus to the step heading on every step change.
+  // Focus management: move focus to the step heading on every step change (inline: not on first render).
+  const firstRender = useRef(true);
   useEffect(() => {
+    if (inline && firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     headingRef.current?.focus();
-  }, [step]);
+  }, [step, inline]);
+  const close = () => onClose?.();
 
   // Escape closes; Tab is trapped inside the dialog.
   useEffect(() => {
+    if (inline) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        onClose();
+        close();
         return;
       }
       if (e.key !== "Tab" || !dialogRef.current) return;
@@ -88,7 +95,8 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inline]);
 
   const phoneValid = digitsOf(phone).length === 10 && !/^[01]/.test(digitsOf(phone));
   const nameValid = name.trim().length >= 2;
@@ -130,15 +138,17 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
 
   const stepTitles = ["Which office?", "What is it for?", "When suits you, and how do we reach you?", "Check your request"];
 
-  return (
-    <div className="fixed inset-0 z-[60] flex items-end justify-center md:items-center md:p-6" role="presentation">
-      <div className="absolute inset-0 bg-ink/55 backdrop-blur-[2px]" onClick={onClose} aria-hidden="true" />
+  const panel = (
       <div
         ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
+        role={inline ? "region" : "dialog"}
+        aria-modal={inline ? undefined : true}
         aria-labelledby={titleId}
-        className="relative flex h-[100dvh] w-full flex-col bg-paper text-ink shadow-float md:h-auto md:max-h-[min(92vh,820px)] md:max-w-[640px] md:rounded-[12px]"
+        className={
+          inline
+            ? "relative flex w-full flex-col rounded-[12px] border border-line bg-paper text-ink"
+            : "relative flex h-[100dvh] w-full flex-col bg-paper text-ink shadow-float md:h-auto md:max-h-[min(92vh,820px)] md:max-w-[640px] md:rounded-[12px]"
+        }
       >
         {/* Header with progress */}
         <div className="border-b border-line px-5 pt-4 pb-4 md:px-8">
@@ -146,9 +156,11 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
             <p id={titleId} className="label text-mute">
               Visit request <span className="sr-only">for {business.name}</span>
             </p>
-            <button type="button" onClick={onClose} className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm" aria-label="Close visit request">
-              <X size={22} strokeWidth={1.5} aria-hidden="true" />
-            </button>
+            {inline ? null : (
+              <button type="button" onClick={close} className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-sm" aria-label="Close visit request">
+                <X size={22} strokeWidth={1.5} aria-hidden="true" />
+              </button>
+            )}
           </div>
           {!sent ? (
             <>
@@ -160,7 +172,7 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
           ) : null}
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 py-6 md:px-8">
+        <div className={`${inline ? "" : "flex-1 overflow-y-auto"} px-5 py-6 md:px-8`}>
           {sent ? (
             <div className="py-6 text-center" role="status">
               <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-ice text-success">
@@ -176,7 +188,11 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
                   : `Your request is ready in your ${sent === "text" ? "messages" : "email"} app. Send it from there.`}
               </p>
               <p className="mt-1 text-mute">{business.hoursShort}.</p>
-              <button type="button" onClick={onClose} className="btn btn-outline mt-8">Close</button>
+              {inline ? (
+                <button type="button" onClick={() => { setSent(null); setStep(0); }} className="btn btn-outline mt-8">Start a new request</button>
+              ) : (
+                <button type="button" onClick={close} className="btn btn-outline mt-8">Close</button>
+              )}
             </div>
           ) : (
             <>
@@ -334,6 +350,12 @@ export default function VisitRequestModal({ initial, onClose }: { initial: BookD
           </div>
         ) : null}
       </div>
+  );
+  if (inline) return panel;
+  return (
+    <div className="fixed inset-0 z-[60] flex items-end justify-center md:items-center md:p-6" role="presentation">
+      <div className="absolute inset-0 bg-ink/55 backdrop-blur-[2px]" onClick={close} aria-hidden="true" />
+      {panel}
     </div>
   );
 }
