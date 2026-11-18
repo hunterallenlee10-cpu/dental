@@ -1,0 +1,41 @@
+// Screens of interactive states: mobile menu, mega menu, Visit Request steps.
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const { chromium } = require("playwright");
+const base = process.argv[2] || "http://localhost:3000";
+const b = await chromium.launch();
+
+const m = await (await b.newContext({ viewport: { width: 375, height: 667 }, reducedMotion: "reduce" })).newPage();
+await m.goto(base + "/", { waitUntil: "load" });
+await m.click('button[aria-label="Open menu"]');
+await m.waitForTimeout(200);
+await m.screenshot({ path: "screenshots/state-mobile-menu-375.png" });
+await m.keyboard.press("Escape");
+await m.evaluate(() => window.scrollTo(0, 900));
+await m.waitForTimeout(500);
+await m.click(".mobile-bar a[data-book]");
+await m.waitForSelector('[role="dialog"][aria-labelledby]');
+await m.waitForTimeout(300);
+await m.screenshot({ path: "screenshots/state-visit-1-375.png" });
+
+const d = await (await b.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" })).newPage();
+await d.goto(base + "/", { waitUntil: "load" });
+await d.click('button[data-panel-trigger="services"]');
+await d.waitForTimeout(200);
+await d.screenshot({ path: "screenshots/state-mega-1440.png" });
+await d.keyboard.press("Escape");
+await d.click("header a[data-book]");
+await d.waitForSelector('[role="dialog"][aria-labelledby]');
+await d.click('text=Frederick >> nth=-1');
+await d.waitForTimeout(400);
+await d.click('text=Crowns, bridges or implants');
+await d.waitForTimeout(400);
+await d.fill('input[autocomplete="name"]', "Jordan Avery");
+await d.fill('input[type="tel"]', "4105550199");
+await d.click('text=After work');
+await d.screenshot({ path: "screenshots/state-visit-3-1440.png" });
+await d.click('button:has-text("Review")');
+await d.waitForTimeout(300);
+await d.screenshot({ path: "screenshots/state-visit-4-1440.png" });
+await b.close();
+console.log("done");

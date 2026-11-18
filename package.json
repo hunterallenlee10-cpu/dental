@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p .",
+    "check": "next build && node scripts/check.mjs",
+    "shots": "node scripts/shots.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

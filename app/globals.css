@@ -1,26 +1,373 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Harbor Light tokens. OKLCH with the hex each one was derived from. */
+@theme {
+  --color-*: initial;
+  --color-paper: oklch(99.03% 0.0011 197.14); /* #FBFCFC */
+  --color-porcelain: oklch(96.89% 0.0025 228.78); /* #F3F5F6 */
+  --color-ice: oklch(94.88% 0.012 223.53); /* #E6F0F4 */
+  --color-ink: oklch(27.08% 0.0424 233.15); /* #0E2A38 */
+  --color-mute: oklch(47.24% 0.0311 231.05); /* #4A5F6A */
+  --color-line: oklch(27.08% 0.0424 233.15 / 0.12); /* #0E2A38 at 12% */
+  --color-navy: oklch(37.32% 0.068 234.12); /* #12465F */
+  --color-azure-deep: oklch(49.14% 0.1122 241.19); /* #08679A */
+  --color-azure: oklch(55.23% 0.1229 239.67); /* #0B7AB2 */
+  --color-cyan: oklch(69.04% 0.1372 231.71); /* #13A9E1 */
+  --color-mist: oklch(76.12% 0.0324 228.35); /* #9DB6C2 */
+  --color-success: oklch(51.73% 0.1026 161.42); /* #1F7A55 */
+  --color-error: oklch(50.03% 0.1821 29.51); /* #B42318 */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Exactly two families. */
+  --font-*: initial;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale: clamp with rem bounds, ceiling at most 2.5x the floor. */
+  --text-label: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+  --text-label--letter-spacing: 0.06em;
+  --text-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  --text-body--line-height: 1.6;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.5;
+  --text-h3: clamp(1.375rem, 1.24rem + 0.6vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-h2: clamp(2.25rem, 1.6rem + 2.9vw, 4rem);
+  --text-h2--line-height: 1.05;
+  --text-display: clamp(2.75rem, 1.55rem + 5.4vw, 6rem);
+  --text-display--line-height: 0.98;
+
+  --radius-sm: 4px;
+  --radius-panel: 28px;
+  --shadow-float: 0 18px 40px -12px oklch(27.08% 0.0424 233.15 / 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px;
+    scroll-padding-bottom: 96px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 340;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  em.accent, .accent {
+    font-style: italic;
+    color: var(--color-azure);
+    font-weight: 320;
+  }
+  .on-ink em.accent, .on-ink .accent {
+    color: var(--color-paper);
+  }
+  ::selection {
+    background: var(--color-ice);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-azure-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-ink :focus-visible, .on-ink:focus-visible {
+    outline-color: var(--color-cyan);
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 40px;
+    }
+  }
+  .section {
+    padding-block: 80px;
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 128px;
+    }
+  }
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .measure {
+    max-width: 66ch;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 48px;
+    padding: 0 1.4rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out-soft);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--color-azure-deep);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover {
+    background: var(--color-navy);
+  }
+  .btn-paper {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .btn-paper:hover {
+    background: var(--color-ice);
+  }
+  .btn-ghost-light {
+    border: 1px solid oklch(99% 0 0 / 0.4);
+    color: var(--color-paper);
+  }
+  .btn-ghost-light:hover {
+    border-color: var(--color-paper);
+    background: oklch(99% 0 0 / 0.08);
+  }
+  .btn-outline {
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+  }
+  .btn-outline:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--color-azure-deep);
+    font-weight: 500;
+    text-underline-offset: 4px;
+  }
+  .link-arrow:hover {
+    text-decoration: underline;
+  }
+  .link-arrow svg {
+    transition: transform 0.25s var(--ease-out-soft);
+  }
+  .link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Placeholder labels (demo mode). */
+  .draft-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-mute);
+    border: 1px dashed oklch(47.24% 0.0311 231.05 / 0.6);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+    background: var(--color-paper);
+  }
+  .on-ink .draft-tag {
+    color: var(--color-mist);
+    border-color: oklch(76.12% 0.0324 228.35 / 0.5);
+    background: transparent;
+  }
+
+  /* Horizontal snap rails */
+  .rail {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    scroll-snap-align: start;
+  }
+
+  /* FAQ */
+  .faq-item summary .faq-icon {
+    transition: transform 0.3s var(--ease-out-soft);
+  }
+  .faq-item[open] summary .faq-icon {
+    transform: rotate(45deg);
+  }
+}
+
+/* Polish tier: scroll reveals, only where scroll-driven animations exist. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes reveal-up {
+      from {
+        opacity: 0.001;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .word-reveal span {
+      animation: word-in linear both;
+      animation-timeline: view();
+      animation-range: cover 10% cover 45%;
+    }
+    @keyframes word-in {
+      from {
+        opacity: 0.25;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .parallax-slow {
+      animation: drift linear both;
+      animation-timeline: view();
+    }
+    .parallax-fast {
+      animation: drift-fast linear both;
+      animation-timeline: view();
+    }
+    @keyframes drift {
+      from { transform: translateY(14px); }
+      to { transform: translateY(-14px); }
+    }
+    @keyframes drift-fast {
+      from { transform: translateY(28px); }
+      to { transform: translateY(-28px); }
+    }
+  }
+}
+
+/* View Transitions between pages. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* First Light: once per session. The head script marks the session; these rules
+   override motion's inline styles so a returning visit shows the final state. */
+html[data-fl="done"] .fl-photo,
+html[data-fl="done"] .fl-sweep,
+html[data-fl="done"] .fl-love {
+  animation: none !important;
+}
+html[data-fl="done"] .fl-photo {
+  transform: none !important;
+}
+html[data-fl="done"] .fl-sweep {
+  opacity: 0 !important;
+}
+html[data-fl="done"] .fl-love {
+  color: var(--color-paper) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fl-photo {
+    transform: none !important;
+  }
+  .fl-sweep {
+    opacity: 0 !important;
+  }
+  .fl-love {
+    color: var(--color-paper) !important;
+  }
+  .reveal, .word-reveal span, .parallax-slow, .parallax-fast {
+    animation: none !important;
+  }
+}
+
+@layer components {
+  .input {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid oklch(27.08% 0.0424 233.15 / 0.25);
+    border-radius: var(--radius-sm);
+    background: var(--color-paper);
+    padding: 0 0.9rem;
+    font-size: 1rem;
+    color: var(--color-ink);
+  }
+  .input:focus-visible {
+    outline: 2px solid var(--color-azure-deep);
+    outline-offset: 1px;
+    border-color: var(--color-azure-deep);
+  }
+  .input[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
+}
+html[data-visit="open"] .mobile-bar,
+html[data-sheet="open"] .mobile-bar {
+  display: none;
 }

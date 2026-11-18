@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local screenshots and lighthouse runs (kept out of the repo except the final set)
+/screenshots/*
+!/screenshots/final/
+/lighthouse/
