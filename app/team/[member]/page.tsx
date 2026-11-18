@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps<"/team/[member]">):
       `${m.name} | ${m.role} | Aurelle Dental`,
       `${m.name} | Aurelle Dental in Maryland`,
     ]),
-    description: `${m.bio} Book a visit with the Aurelle Dental team in Baltimore, Frederick, Leonardtown or Annapolis, MD.`.slice(0, 160),
+    description: `${m.bio} Book a visit at Aurelle Dental, with four offices in Maryland.`,
     path: routes.member(m.slug),
   });
 }

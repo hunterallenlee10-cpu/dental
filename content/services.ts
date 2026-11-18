@@ -81,9 +81,15 @@ export const serviceTitle = (s: Service) =>
     `${s.name} in Maryland | Aurelle Dental`,
   ]);
 
-/** Meta description from the page's own lead sentence, trimmed to about 155 characters. */
-export const describe = (lead: string, tail = " Written estimate first. Book a visit.") => {
+/** Meta description from the page's own lead sentence plus a short where-and-action tail, at most 160 characters. */
+export const describe = (lead: string, tail = " Four Maryland offices. Written estimate first. Book a visit.") => {
   const first = lead.split(/(?<=\.)\s/)[0];
-  const base = first.length > 150 - tail.length ? first.slice(0, 150 - tail.length).replace(/\s+\S*$/, "") + "." : first;
-  return (base + tail).slice(0, 160);
+  const room = 158 - tail.length;
+  if (first.length <= room) return first + tail;
+  // Too long: cut at the last clause boundary (colon or comma) that fits, never mid-phrase.
+  const cut = first.slice(0, room);
+  const colon = cut.indexOf(": ");
+  const at = colon > 40 ? colon : cut.lastIndexOf(", ");
+  const base = (at > 40 ? cut.slice(0, at) : cut.replace(/\s+\S*$/, "")).replace(/[,:;]$/, "");
+  return base + "." + tail;
 };
