@@ -12,6 +12,8 @@ for (const [w, h, tag] of [[1440, 900, "1440"], [375, 667, "375"]]) {
   await p.goto(base + "/", { waitUntil: "load" });
   await p.waitForTimeout(400);
   await shot("hero");
+  await p.addStyleTag({ content: ".cv-auto{content-visibility:visible!important}" });
+  await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } await Promise.race([Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))), new Promise((r) => setTimeout(r, 4000))]); });
   // Section captures scroll the page; hide the sticky header and floating bar so they don't land mid-frame.
   const hide = await p.addStyleTag({ content: "header, .mobile-bar, button[aria-label='Back to top'] { visibility: hidden !important; }" });
   const cov = p.locator("#coverage");
@@ -28,6 +30,8 @@ for (const [w, h, tag] of [[1440, 900, "1440"], [375, 667, "375"]]) {
   await p.goto(base + "/services/dental-implants", { waitUntil: "load" });
   await p.waitForTimeout(400);
   await shot("service-page");
+  await p.addStyleTag({ content: ".cv-auto{content-visibility:visible!important}" });
+  await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } window.scrollTo(0, 0); await Promise.race([Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))), new Promise((r) => setTimeout(r, 4000))]); });
   await p.screenshot({ path: `${dir}/service-page-full-${tag}.jpg`, type: "jpeg", quality: 70, fullPage: true });
   await p.locator(tag === "375" ? "main a[data-book]" : "main a[data-book]").first().click();
   await p.waitForSelector('[role="dialog"][aria-labelledby]');

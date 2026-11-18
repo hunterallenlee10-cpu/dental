@@ -161,6 +161,7 @@ export const servicesC: Service[] = [
     ],
   },
   {
+    // DRAFT: confirm provider status for the Invisalign name (a trademark); otherwise rename to "Clear aligners".
     slug: "invisalign",
     sourceSlug: "/invisalign/",
     name: "Invisalign",

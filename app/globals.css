@@ -408,3 +408,9 @@ html[data-sheet="open"] .mobile-bar {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+@media print {
+  .cv-auto {
+    content-visibility: visible;
+  }
+}

@@ -16,6 +16,7 @@ for (const [w, h, tag] of [[1440, 900, "1440"], [375, 667, "375"]]) {
   const page = await ctx.newPage();
   for (const p of paths) {
     await page.goto(base + p, { waitUntil: "load" });
+    await page.addStyleTag({ content: ".cv-auto{content-visibility:visible!important}" });
     await page.evaluate(async () => {
       // Trigger lazy images by scrolling through the page.
       for (let y = 0; y < document.body.scrollHeight; y += 600) {

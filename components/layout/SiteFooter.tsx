@@ -68,6 +68,7 @@ export function SiteFooter() {
               ))}
               <li><Link href={routes.service("dental-implants")} className="hover:text-mist hover:underline">Dental implants</Link></li>
               <li><Link href={routes.service("porcelain-veneers")} className="hover:text-mist hover:underline">Porcelain veneers</Link></li>
+              {/* DRAFT: confirm provider status for the Invisalign name */}
               <li><Link href={routes.service("invisalign")} className="hover:text-mist hover:underline">Invisalign</Link></li>
               <li><Link href={routes.service("teeth-cleaning")} className="hover:text-mist hover:underline">Teeth cleaning</Link></li>
               <li><Link href={routes.service("wisdom-teeth-removal")} className="hover:text-mist hover:underline">Wisdom teeth removal</Link></li>

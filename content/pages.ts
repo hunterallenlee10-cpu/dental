@@ -151,7 +151,7 @@ export const pricing: {
     },
     {
       q: "What should I bring to my first visit?",
-      a: "Bring dental x-rays from the last two years if you have them. If not, we take them here, and they are billed with your visit.",
+      a: "Bring dental x-rays from the last two years if you have them. If not, we take them here.",
     },
     {
       q: "Do you take insurance?",
@@ -395,7 +395,7 @@ export const locations: Record<
       "Our Baltimore, Maryland office is our flagship, in Harbor East. It is open every weekday from 7 AM to 8 PM.", // DRAFT: landmark
     services: officeServices, // DRAFT: confirm per office
     howToFind: howToFindPlaceholder,
-    nearby: "Patients also come from Towson, Canton and Fells Point.", // DRAFT
+    nearby: "Close to Towson, Canton and Fells Point.", // DRAFT: nearby areas served
     faq: [
       {
         q: "What are the Baltimore office's hours?",
@@ -416,7 +416,7 @@ export const locations: Record<
       "Our Frederick, Maryland office is in Downtown Frederick. It is open every weekday from 7 AM to 8 PM, so you can come before or after work or school.", // DRAFT: landmark
     services: officeServices, // DRAFT: confirm per office
     howToFind: howToFindPlaceholder,
-    nearby: "Patients also come from Middletown, Urbana and Walkersville.", // DRAFT
+    nearby: "Close to Middletown, Urbana and Walkersville.", // DRAFT: nearby areas served
     faq: [
       {
         q: "How do I book at the Frederick office?",
@@ -437,7 +437,7 @@ export const locations: Record<
       "Our Leonardtown, Maryland office is near the town square and serves patients across St. Mary's County. It is open every weekday from 7 AM to 8 PM.", // DRAFT: landmark
     services: officeServices, // DRAFT: confirm per office
     howToFind: howToFindPlaceholder,
-    nearby: "Patients also come from Hollywood, California and Lexington Park.", // DRAFT
+    nearby: "Close to Lexington Park, Hollywood and California, MD.", // DRAFT: nearby areas served
     faq: [
       {
         q: "Which services are available at the Leonardtown office?",
@@ -458,7 +458,7 @@ export const locations: Record<
       "Our Annapolis, Maryland office is our newest. It keeps the same hours as every Aurelle office: weekdays from 7 AM to 8 PM.",
     services: officeServices, // DRAFT: confirm per office
     howToFind: howToFindPlaceholder,
-    nearby: "Patients also come from Arnold, Severna Park and Edgewater.", // DRAFT
+    nearby: "Close to Arnold, Severna Park and Edgewater.", // DRAFT: nearby areas served
     faq: [
       {
         q: "Is the Annapolis office new?",

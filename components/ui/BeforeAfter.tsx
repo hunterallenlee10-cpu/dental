@@ -51,14 +51,14 @@ export function BeforeAfter({ before, after, caseLabel, sizes, wide }: Props) {
       onPointerCancel={() => (dragging.current = false)}
       data-sample
     >
-      <Image src={b.src} width={b.width} height={b.height} sizes={sizes} alt={`${caseLabel}, before treatment`} className="pointer-events-none absolute inset-0 h-full w-full object-cover" draggable={false} />
+      <Image src={b.src} width={b.width} height={b.height} sizes={sizes} alt={`${caseLabel}, before treatment`} className="pointer-events-none absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.03)]" draggable={false} />
       <Image
         src={a.src}
         width={a.width}
         height={a.height}
         sizes={sizes}
         alt={`${caseLabel}, after treatment`}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.03)]"
         style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
         draggable={false}
       />

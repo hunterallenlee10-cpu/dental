@@ -166,12 +166,12 @@ export const servicesB: Service[] = [
     // Filled from facts in the two veneer articles of the same source (whitening or veneers; bonding or veneers).
     after: [
       "Care for veneers as you would your own teeth: brush, clean between your teeth and come in for regular checkups and cleanings.",
-      "Porcelain holds its color and resists stains, but the teeth and gums around it still need daily care.",
+      "Porcelain usually holds its color and resists stains, but the teeth and gums around it still need daily care.",
     ],
     gains: [
       "Color, shape and size of your front teeth change all at once.",
-      "Gaps and chipped edges are covered.",
-      "Porcelain holds its color and resists stains.",
+      "Gaps and chipped edges can be covered.",
+      "Porcelain usually holds its color and resists stains.",
     ],
     faq: [
       {
@@ -342,6 +342,7 @@ export const servicesB: Service[] = [
     ],
   },
   {
+    // DRAFT: confirm provider status for the All-on-4 name (a trademark); otherwise rename to "Full-arch implant teeth".
     slug: "all-on-4",
     sourceSlug: "/all-on-4/",
     name: "All-on-4 and All-on-6",

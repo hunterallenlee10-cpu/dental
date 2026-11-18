@@ -7,7 +7,7 @@ export function CoverageSection() {
     <section id="coverage" aria-labelledby="coverage-title" className="bg-ice">
       <div className="mx-auto grid max-w-[1672px] lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <div className="hidden lg:block">
-          <div className="sticky top-[72px] aspect-square max-h-[calc(100svh-72px)] w-full overflow-hidden">
+          <div className="sticky top-[72px] aspect-square max-h-[calc(100svh-72px)] w-full overflow-hidden bg-porcelain">
             <Photo id="13" cover sizes="(min-width: 1672px) 697px, 42vw" className="object-[50%_25%]" />
           </div>
         </div>

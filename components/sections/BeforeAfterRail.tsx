@@ -14,10 +14,12 @@ export function BeforeAfterRail({ headingId = "ba-title", tone = "paper" }: { he
           The best way to see what treatment changes is to see the smile before and after.
         </p>
       </div>
-      <Rail label="Sample before and after cases" itemClass="w-[calc(100vw-40px)] max-w-[600px] sm:w-[520px] lg:w-[600px]" className="mt-12">
+      <Rail label="Sample before and after cases" itemClass="w-[calc(100vw-40px)] max-w-[460px] sm:w-[440px]" className="mt-12">
         {sampleCases.map((c) => (
           <figure key={c.n}>
-            <BeforeAfter before={c.before} after={c.after} caseLabel={`Sample case ${c.n}`} sizes="(min-width: 640px) 600px, 100vw" />
+            <div className="rounded-sm border border-line bg-porcelain p-2.5">
+              <BeforeAfter before={c.before} after={c.after} caseLabel={`Sample case ${c.n}`} sizes="(min-width: 640px) 420px, 100vw" />
+            </div>
             <figcaption className="mt-4 flex items-baseline gap-4">
               <span className="font-display text-[2rem] leading-none text-azure">{c.n}</span>
               <span>

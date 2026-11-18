@@ -1,7 +1,9 @@
 import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
 import { PageHero } from "./PageHero";
 import { Deferred } from "@/components/ui/Deferred";
-import { ServiceCard } from "./Cards";
+import Link from "@/components/ui/Link";
+import { categories } from "@/content/categories";
+import { serviceBySlug, serviceMeta } from "@/content/services";
 import { FaqSection } from "@/components/sections/home/FaqSection";
 import { MapFacade } from "@/components/sections/MapFacade";
 import { CtaPanel } from "@/components/sections/CtaPanel";
@@ -18,6 +20,11 @@ export const officePhoto: Record<Office["slug"], PhotoId> = { baltimore: "31", f
 
 export function LocationTemplate({ o }: { o: Office }) {
   const l = locations[o.slug];
+  // Group this office's services under their category hubs.
+  const groups = categories
+    .filter((c) => c.key !== "prosthodontics")
+    .map((c) => ({ key: c.key, name: c.name, services: l.services.filter((sv) => serviceMeta[sv].category === c.key) }))
+    .filter((g) => g.services.length);
   return (
     <>
       <JsonLd data={officeSchema(o)} />
@@ -82,14 +89,25 @@ export function LocationTemplate({ o }: { o: Office }) {
         <div className="wrap">
           <h2 id="here-title" className="text-h2">Care at our <em className="accent">{o.town}</em> office</h2>
           <p className="mt-5 max-w-[56ch] text-mute">These are the services patients most often come to us for. When you book, ask which services and which dentists are at this office.</p>
-          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {/* DRAFT: confirm per office */}
-            {l.services.map((s) => (
-              <li key={s}>
-                <ServiceCard slug={s} />
-              </li>
+          {/* DRAFT: confirm per office */}
+          <div className="mt-12 flex flex-wrap gap-px overflow-hidden rounded-sm border border-line bg-line">
+            {groups.map((g) => (
+              <div key={g.key} className="grow basis-[200px] bg-paper p-6 md:p-7">
+                <h3 className="font-display text-[1.4rem] leading-tight">
+                  <Link href={routes.category(g.key)} className="hover:text-azure-deep">{g.name}</Link>
+                </h3>
+                <ul className="mt-4 space-y-2 text-[0.9375rem]">
+                  {g.services.map((sv) => (
+                    <li key={sv}>
+                      <Link href={routes.service(sv)} className="text-mute underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink">
+                        {serviceBySlug(sv).name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 

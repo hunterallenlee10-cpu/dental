@@ -84,7 +84,7 @@ export const ppoTiers: Record<Exclude<CoverageNeed, "pain">, Tier> = {
   },
 };
 
-export const ppoFineprint = "After your deductible, up to your yearly maximum. Deductibles are commonly $25 to $100 a year and yearly maximums commonly $1,000 to $2,000.";
+export const ppoFineprint = "After your deductible, up to your yearly maximum. Across many US PPO plans, deductibles are commonly $25 to $100 a year and yearly maximums commonly $1,000 to $2,000.";
 export const otherPlanText = "Plans differ a lot. Bring your card and we will check your benefits before treatment.";
 export const disclaimer = "General guide, not a quote. Plans differ. You get a written estimate before any treatment.";
 

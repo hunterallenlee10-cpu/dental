@@ -46,7 +46,7 @@ export const servicesA: Service[] = [
     ],
     gains: [
       "Your procedure is planned from your x-rays or scan.",
-      "Local anesthesia keeps the procedure pain free.",
+      "We numb the area first, so you usually feel pressure but not pain.", // DRAFT: dentist to confirm
       "Clear instructions for healing.",
     ],
     faq: [
@@ -215,12 +215,12 @@ export const servicesA: Service[] = [
     gains: [
       "A more precise diagnosis and treatment plan.",
       "A 3D CBCT scan for careful, safe implant planning.",
-      "We take the image during the same visit.",
+      "We can take it here when you come in.",
     ],
     faq: [
       {
         q: "Do I need to bring a panoramic x-ray to my first visit?",
-        a: "It helps if you bring a panoramic x-ray from the last 2 years. If you don't have one, we take it here, and it is billed separately.",
+        a: "It helps if you bring a panoramic x-ray from the last 2 years. If you don't have one, we take it here.",
       },
     ],
     related: ["panoramic-x-ray", "3d-cbct-scan", "dental-implants"],
