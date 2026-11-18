@@ -5,6 +5,7 @@ import { routes } from "@/lib/routes";
 import { serviceBySlug, serviceMeta } from "@/content/services";
 import { tips } from "@/content/tips";
 import type { ServiceSlug, Tip, TipSlug } from "@/content/types";
+import type { PhotoId } from "@/lib/photos";
 
 /** Text-led service card: title, one-line summary, arrow. */
 export function ServiceCard({ slug, headingLevel = "h3" }: { slug: ServiceSlug; headingLevel?: "h2" | "h3" }) {
@@ -23,7 +24,25 @@ export function ServiceCard({ slug, headingLevel = "h3" }: { slug: ServiceSlug; 
   );
 }
 
-export const tipPhoto = (t: Tip) => serviceMeta[t.relatedServices[0] ?? "teeth-cleaning"].photo;
+/** One photo per article, each drawn from the article's related service. */
+const tipPhotos: Record<TipSlug, PhotoId> = {
+  "implant-or-bridge": "05",
+  "how-often-to-see-the-dentist": "17",
+  "whitening-or-veneers": "53",
+  "after-a-tooth-extraction": "38",
+  "toothache-what-to-do": "43",
+  "how-to-brush-and-floss": "27",
+  "how-long-whitening-lasts": "24",
+  "bonding-or-veneers": "51",
+  "when-a-tooth-needs-a-crown": "33",
+  "dentures-or-implant-teeth": "54",
+  "clear-aligners-or-braces": "25",
+  "braces-for-adults": "42",
+  "why-retainers-matter": "06",
+  "should-wisdom-teeth-come-out": "20",
+  "which-dental-x-ray": "19",
+};
+export const tipPhoto = (t: Tip): PhotoId => tipPhotos[t.slug] ?? serviceMeta[t.relatedServices[0] ?? "teeth-cleaning"].photo;
 
 export function TipCard({ tip, headingLevel = "h3" }: { tip: Tip; headingLevel?: "h2" | "h3" }) {
   const H = headingLevel;
