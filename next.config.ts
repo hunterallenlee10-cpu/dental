@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { guardOrThrow } from "./scripts/guard.mjs";
+
+// Live mode refuses to build while placeholders remain.
+guardOrThrow();
 
 const isDemo = process.env.NEXT_PUBLIC_SITE_MODE !== "live";
 

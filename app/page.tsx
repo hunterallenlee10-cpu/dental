@@ -12,10 +12,20 @@ import { ReviewsPlaceholder } from "@/components/sections/ReviewsPlaceholder";
 import { FaqSection } from "@/components/sections/home/FaqSection";
 import { CtaPanel } from "@/components/sections/CtaPanel";
 import { homeFaq } from "@/content/home";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { practiceSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
+
+export const metadata = pageMeta({
+  title: "Dentist in Baltimore and Frederick, MD | Aurelle Dental",
+  description: "Aurelle Dental has four Maryland offices in Baltimore, Frederick, Leonardtown and Annapolis. Written estimate before treatment. Open until 8 PM. Book a visit.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={practiceSchema()} />
       <Hero />
       <ProofStrip />
       <MissionBand />

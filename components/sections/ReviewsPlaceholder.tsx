@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { routes } from "@/lib/routes";
 import { isDemo } from "@/lib/site";
 
+// DRAFT: review placeholders, replace with real attributed reviews (no review markup on the practice site).
 /** No reviews exist. Empty labelled placeholders: no name, no stars, no quote. Hidden entirely in live mode until real ones are added. */
 export function ReviewCards({ count = 3 }: { count?: number }) {
   return (

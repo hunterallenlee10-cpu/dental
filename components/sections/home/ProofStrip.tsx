@@ -23,6 +23,7 @@ export function ProofStrip() {
           ))}
         </ul>
         <div className="mt-6 flex justify-center md:mt-8">
+          {/* DRAFT: Google rating placeholder, replace with the real rating and a link to the profile */}
           <DraftTag>Your Google rating goes here</DraftTag>
         </div>
       </div>
