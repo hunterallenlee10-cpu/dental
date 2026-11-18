@@ -163,11 +163,32 @@ export const servicesB: Service[] = [
       { title: "Planning", body: "We plan the shape and shade with you. The teeth are usually lightly reshaped." },
       { title: "Veneers", body: "Your veneers are made to measure in a dental lab, then bonded to the front of your teeth." },
     ],
-    after: [],
-    gains: [],
-    faq: [],
-    related: [],
-    relatedTips: ["whitening-or-veneers"],
+    // Filled from facts in the two veneer articles of the same source (whitening or veneers; bonding or veneers).
+    after: [
+      "Care for veneers as you would your own teeth: brush, clean between your teeth and come in for regular checkups and cleanings.",
+      "Porcelain holds its color and resists stains, but the teeth and gums around it still need daily care.",
+    ],
+    gains: [
+      "Color, shape and size of your front teeth change all at once.",
+      "Gaps and chipped edges are covered.",
+      "Porcelain holds its color and resists stains.",
+    ],
+    faq: [
+      {
+        q: "Should I whiten my teeth or get veneers?",
+        a: "If your teeth are healthy and nicely shaped and have only darkened, whitening is often enough. If you also want to change their shape, close gaps or cover chipped edges, veneers are the right choice.",
+      },
+      {
+        q: "Do my teeth need to be reshaped for veneers?",
+        a: "Usually a little, so the decision is permanent. That is why we first check that your teeth and gums are healthy.",
+      },
+      {
+        q: "Can I whiten my teeth and get veneers?",
+        a: "Yes. We whiten first, then match the shade of the veneers to your new shade, because veneers do not whiten.",
+      },
+    ],
+    related: ["teeth-whitening", "cosmetic-bonding", "dental-crowns"],
+    relatedTips: ["whitening-or-veneers", "bonding-or-veneers"],
     draftNotes: [
       "Source page is a feature layout with a patient-story gallery. All story text, names and quotes were skipped.",
       "Source has no step list, after-care, gains, FAQ or related services. Steps were written from the page's own body copy only. Dentist to confirm.",
