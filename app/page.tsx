@@ -7,6 +7,11 @@ import { WhyAurelle } from "@/components/sections/home/WhyAurelle";
 import { BeforeAfterRail } from "@/components/sections/BeforeAfterRail";
 import { TeamRail } from "@/components/team/TeamRail";
 import { PaymentSection } from "@/components/sections/home/PaymentSection";
+import { LocationsSection } from "@/components/sections/home/LocationsSection";
+import { ReviewsPlaceholder } from "@/components/sections/ReviewsPlaceholder";
+import { FaqSection } from "@/components/sections/home/FaqSection";
+import { CtaPanel } from "@/components/sections/CtaPanel";
+import { homeFaq } from "@/content/home";
 
 export default function HomePage() {
   return (
@@ -20,6 +25,10 @@ export default function HomePage() {
       <BeforeAfterRail />
       <TeamRail />
       <PaymentSection />
+      <LocationsSection />
+      <ReviewsPlaceholder />
+      <FaqSection items={homeFaq} />
+      <CtaPanel />
     </>
   );
 }
