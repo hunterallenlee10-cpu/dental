@@ -1,6 +1,6 @@
 # Lighthouse results
 
-Lighthouse 13.6.0, Chromium Chrome, production build (`next build` then `next start`), run 2026-11-18 in the build container. Default mobile (simulated slow 4G, 4x CPU) and desktop presets. P = Performance, A = Accessibility, BP = Best Practices.
+Lighthouse 13.6.0, Google Chrome for Testing 153.0.8010.12 (Playwright build), production build (`next build` then `next start`), run 2026-11-18 in the build container. Default mobile (simulated slow 4G, 4x CPU) and desktop presets. P = Performance, A = Accessibility, BP = Best Practices.
 
 ## Live mode (NEXT_PUBLIC_SITE_MODE=live, NEXT_PUBLIC_SITE_URL=http://localhost:3000, guard skipped for testing)
 

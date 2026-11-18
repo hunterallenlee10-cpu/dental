@@ -35,17 +35,22 @@ Fonts: Newsreader (display, 300 to 460, italic accent), Geist (400, 500, 600). T
 
 Motion: First Light (hero) and Coverage Check result only, plus the CSS polish tier (scroll reveals in `@supports (animation-timeline: view())`, mission word reveal, view transitions).
 
+## Build log
+Phases 1 to 13 complete, one commit per phase on `claude/fervent-fermat-tk55zy`. Verification: `npm run check` (88 pages), `node scripts/validate-jsonld.mjs` plus validator.schema.org (0 errors), `scripts/lh.sh` (see LIGHTHOUSE.md), `scripts/a11y-pass.mjs` (keyboard and zoom), two independent reviews.
+
+Known gap: simulated mobile LCP on photo-hero pages is 2.6 to 3.3 s against the 2.5 s budget (observed LCP under 0.3 s; Performance 91 to 98).
+
 ## Checklist (section 10 of BUILD-SPEC)
-- [ ] Hero sells the template; First Light plays once, never hides the headline, no layout shift; 375px headline and Book visible.
-- [ ] Coverage Check instant for every combination, sources in code, "General guide, not a quote", keyboard and screen reader.
-- [ ] Ten before and after sliders: mouse, touch, arrow keys, "Sample case" label.
-- [ ] Every Book a visit opens the Visit Request with the right pre-selects; honest last step; phone, text, directions links work.
-- [ ] All routes exist, nav and footer resolve, no thin pages.
-- [ ] Zero Slovenian, source names, em dashes, stock or AI images, real team photos.
-- [ ] Every DRAFT, sample and placeholder labelled in demo; live build fails while any remain.
-- [ ] Two fonts, token palette, motion in two places, no loading intro or cursor effects.
-- [ ] 375px: no overflow, menu and floating bar work, bar never covers focus.
-- [ ] Demo: noindex meta and X-Robots-Tag on pages and images, concept lines. Live: index, sitemap, llms.txt, no concept lines.
-- [ ] Lighthouse live SEO 100 on every tested page; others 90+. Demo: only indexing audit fails.
-- [ ] One h1 per page with what and where; unique titles and descriptions; JSON-LD valid and truthful.
-- [ ] Keyboard-only and 200% zoom passes.
+- [x] Hero sells the template; First Light plays once, never hides the headline, no layout shift; 375px headline and Book visible.
+- [x] Coverage Check instant for every combination, sources in code, "General guide, not a quote", keyboard and screen reader.
+- [x] Ten before and after sliders: mouse, touch, arrow keys, "Sample case" label.
+- [x] Every Book a visit opens the Visit Request with the right pre-selects; honest last step; phone, text, directions links work.
+- [x] All routes exist, nav and footer resolve, no thin pages.
+- [x] Zero Slovenian, source names, em dashes, stock or AI images, real team photos.
+- [x] Every DRAFT, sample and placeholder labelled in demo; live build fails while any remain.
+- [x] Two fonts, token palette, motion in two places, no loading intro or cursor effects.
+- [x] 375px: no overflow, menu and floating bar work, bar never covers focus.
+- [x] Demo: noindex meta and X-Robots-Tag on pages and images, concept lines. Live: index, sitemap, llms.txt, no concept lines.
+- [x] Lighthouse live SEO 100 on every tested page; others 90+. Demo: only indexing audit fails.
+- [x] One h1 per page with what and where; unique titles and descriptions; JSON-LD valid and truthful.
+- [x] Keyboard-only and 200% zoom passes.
