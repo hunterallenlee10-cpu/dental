@@ -32,7 +32,7 @@ export const categoryNav: { key: CategoryKey; label: string; services: { slug: S
     label: "Implants and restorative",
     services: [
       { slug: "dental-implants", label: "Dental implants" },
-      { slug: "all-on-4", label: "All-on-4" },
+      { slug: "all-on-4", label: "All-on-4" }, // DRAFT: confirm provider status for the All-on-4 name
       { slug: "dental-crowns", label: "Dental crowns" },
       { slug: "dental-bridges", label: "Dental bridges" },
       { slug: "dentures", label: "Dentures" },
@@ -45,7 +45,7 @@ export const categoryNav: { key: CategoryKey; label: string; services: { slug: S
     services: [
       { slug: "braces", label: "Braces" },
       { slug: "invisible-braces", label: "Invisible braces" },
-      { slug: "invisalign", label: "Invisalign" },
+      { slug: "invisalign", label: "Invisalign" }, // DRAFT: confirm provider status for the Invisalign name
       { slug: "retainers", label: "Retainers" },
     ],
   },

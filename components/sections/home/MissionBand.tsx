@@ -13,8 +13,8 @@ export function MissionBand() {
         <div aria-hidden="true" className="absolute inset-0">
           <Photo id="02" alt="" sizes="100vw" cover className="object-[50%_40%] opacity-40 mix-blend-screen" />
         </div>
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,rgb(14_42_56/0)_0%,rgb(251_252_252/1)_100%)] md:h-64" />
-        <div className="wrap relative pt-20 pb-52 text-center md:pt-32 md:pb-80">
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-24 bg-[linear-gradient(180deg,rgb(14_42_56/0)_0%,rgb(251_252_252/1)_100%)] md:h-32" />
+        <div className="wrap relative pt-20 pb-36 text-center md:pt-32 md:pb-48">
           <h2 id="mission-title" className="text-h2">
             Every smile <em className="accent">has its own story.</em>
           </h2>
@@ -25,10 +25,11 @@ export function MissionBand() {
           </p>
         </div>
       </div>
-      <div className="wrap relative -mt-28 pb-20 md:-mt-48 md:pb-32">
+      <div className="wrap relative pt-4 pb-20 md:pb-28">
         {/* DRAFT: replace with a real Baltimore harbor photo */}
-        <figure className="relative mx-auto aspect-[1440/420] w-full max-w-[1440px] overflow-hidden rounded-sm bg-[linear-gradient(180deg,#E6F0F4_0%,#F3F5F6_60%,#E6F0F4_100%)]" data-placeholder>
-          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(0deg,rgb(14_42_56/0.06),transparent)]" />
+        <figure className="relative mx-auto h-40 w-full max-w-[1440px] overflow-hidden rounded-sm border border-line bg-[linear-gradient(180deg,#F3F5F6_0%,#E6F0F4_100%)] md:h-60" data-placeholder>
+          <div aria-hidden="true" className="absolute inset-x-0 top-[62%] h-px bg-ink/10" />
+          <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[38%] bg-[linear-gradient(0deg,rgb(14_42_56/0.05),transparent)]" />
           {isDemo ? (
             <figcaption className="absolute bottom-3 right-3 md:bottom-5 md:right-5">
               <DraftTag>Photo: your city skyline</DraftTag>

@@ -255,7 +255,7 @@ export function SiteNav() {
           <ul className="space-y-1">
             {[{ href: routes.services, label: "Services" }, ...mainNav, { href: routes.newPatients, label: "New patients" }, { href: routes.emergency, label: "Emergency dentist" }].map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="block py-1.5 font-display text-[2rem] leading-tight font-light" onClick={() => setSheet(false)}>
+                <Link href={l.href} className="block py-1 font-display text-[1.75rem] leading-tight font-light" onClick={() => setSheet(false)}>
                   {l.label}
                 </Link>
               </li>

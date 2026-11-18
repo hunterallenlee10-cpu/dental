@@ -281,13 +281,15 @@
         opacity: 1;
       }
     }
-    .parallax-slow {
-      animation: drift linear both;
-      animation-timeline: view();
-    }
-    .parallax-fast {
-      animation: drift-fast linear both;
-      animation-timeline: view();
+    @media (min-width: 1024px) {
+      .parallax-slow {
+        animation: drift linear both;
+        animation-timeline: view();
+      }
+      .parallax-fast {
+        animation: drift-fast linear both;
+        animation-timeline: view();
+      }
     }
     @keyframes drift {
       from { transform: translateY(14px); }

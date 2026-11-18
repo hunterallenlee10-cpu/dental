@@ -44,9 +44,9 @@ export function SiteFooter() {
         <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-paper/12 pt-12 md:grid-cols-4">
           {offices.map((o) => (
             <div key={o.slug}>
-              <h2 className="flex items-center gap-2 font-display text-[1.5rem]">
+              <h2 className="flex flex-wrap items-center gap-2 font-display text-[1.5rem]">
                 <Link href={routes.location(o.slug)} className="hover:text-mist">{o.town}</Link>
-                {o.isNew ? <span className="rounded-full border border-cyan/60 px-2 py-0.5 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.06em] text-cyan">New office</span> : null}
+                {o.isNew ? <span className="whitespace-nowrap rounded-full border border-cyan/60 px-2 py-0.5 font-sans text-[0.6875rem] font-medium uppercase tracking-[0.06em] text-cyan">New office</span> : null}
               </h2>
               <p className="mt-2 text-[0.9375rem] text-mist">
                 {addressPlaceholder}
