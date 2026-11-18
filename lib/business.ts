@@ -25,6 +25,7 @@ export const business = {
   googleReviewCount: null as number | null, // DRAFT
   socials: [] as { name: string; href: string }[], // DRAFT: social links
   logoPath: "/icon.svg", // DRAFT: practice logo
+  samePricesLine: "Same prices at all four offices. One number. Open until 8 PM.", // DRAFT
 } as const;
 
 export type Office = {
